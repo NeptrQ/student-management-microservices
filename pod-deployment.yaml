@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-registration-deployment
+  labels:
+    app: gateway-registration
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-registration
+  template:
+    metadata:
+      name: gateway-registration-pod
+      labels:
+        app: gateway-registration
+    spec:
+      containers:
+        - name: apigateway-container
+          image: npetr/student-apigateway:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+        - name: registration-container
+          image: npetr/student-registration:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delete-service-deployment
+  labels:
+    app: delete-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: delete-service
+  template:
+    metadata:
+      name: delete-service-pod
+      labels:
+        app: delete-service
+    spec:
+      containers:
+        - name: delete-container
+          image: npetr/student-delete:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5002
