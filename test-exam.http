@@ -1,0 +1,14 @@
+### Task 5: Register Student through API Gateway
+POST http://127.0.0.1:55004/register
+Content-Type: application/json
+
+{
+  "Student_id": "STU101",
+  "Student_name": "Vanuth Srom",
+  "student_mobile": "012345678",
+  "student_email": "vanuth.final@aupp.edu.kh",
+  "student_password": "Password123!"
+}
+
+### Task 6: Delete Student through API Gateway (Assigned 2nd Microservice)
+DELETE http://127.0.0.1:55004/delete/STU101
